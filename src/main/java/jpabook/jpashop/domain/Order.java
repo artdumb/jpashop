@@ -29,15 +29,29 @@ public class Order {
     private Member member;
 
     //OrderItem과 관계필드
-    @OneToMany(mappedBy = "order")
+    //casecacde를 통해 영속성컨텍스트에 넣을 때 orderItems를 같이 넣음
+    //삭제할 떄도 같이
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     //Delivery와 관계필드
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
-
+    //==연관관계메소드==//
+    public void setMember(Member member) {
+        this.member = member;
+        member.getOrders().add(this);
+    }
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
 
 
 }

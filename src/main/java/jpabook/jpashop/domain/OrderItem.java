@@ -20,13 +20,13 @@ public class OrderItem {
     private int count;
 
     //order과 관계필드
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="order_id")
     private Order order;
 
 
     //item과 관계필드
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
