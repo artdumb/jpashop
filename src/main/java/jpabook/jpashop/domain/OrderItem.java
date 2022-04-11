@@ -30,6 +30,25 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    //==생성메소드==//
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count){
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+        //주문수량만큼 재고 깐다.
+        item.removeStock(count);
+        return orderItem;
+    }
 
+    //==비즈니스로직==//
+    //제고수량은 원상복귀
+    public void cancel() {
+        getItem().addStock(count);
+    }
 
+    //
+    public int getTotalPrice() {
+        return getOrderPrice()*getCount();
+    }
 }

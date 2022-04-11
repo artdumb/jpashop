@@ -30,7 +30,7 @@ public class MemberRepository {
     }
 
     public List<Member> findByName(String name){
-        List<Member> result = em.createQuery("select m from Member m where m.name = name", Member.class)
+        List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
                 .setParameter("name",name)
                 .getResultList();
         return result;
