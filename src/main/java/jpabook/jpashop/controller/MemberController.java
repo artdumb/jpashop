@@ -2,12 +2,15 @@ package jpabook.jpashop.controller;
 
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.domain.item.Book;
+import jpabook.jpashop.service.ItemService;
 import jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -46,4 +49,6 @@ public class MemberController {
         model.addAttribute("members",members); //모델에 담아서 화면에 넘기는 코드!!!!!
         return "members/memberList";
     }
+
+
 }

@@ -20,7 +20,6 @@ public class ItemRepository {
             //id가 없을 때는 새로 저장한다.
             em.persist(item);//save
         } else {
-
             //id가 있을 때는 Update한다.
             em.merge(item);//update
         }
